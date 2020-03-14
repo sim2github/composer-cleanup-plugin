@@ -7,7 +7,7 @@ class CleanupRules
     public static function getRules()
     {
         // Default patterns for common files
-        $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* HISTORY* UPGRADING* UPGRADE* package* demo example examples doc docs readme* changelog* composer*';
+        $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* HISTORY* UPGRADING* UPGRADE* *.md package* demo example examples doc docs readme* changelog* composer*';
         $tests = '.travis.yml .scrutinizer.yml phpcs.xml* phpcs.php phpunit.xml* phpunit.php test tests Tests travis patchwork.json';
 
         return array(
