@@ -49,12 +49,6 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
             ScriptEvents::POST_PACKAGE_UPDATE  => array(
                 array('onPostPackageUpdate', 0)
             ),
-            ScriptEvents::POST_INSTALL_CMD  => array(
-                array('onPostInstallUpdateCmd', 0)
-            ),
-            ScriptEvents::POST_UPDATE_CMD  => array(
-                array('onPostInstallUpdateCmd', 0)
-            ),
         );
     }
 
@@ -91,7 +85,7 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
         $repository = $this->composer->getRepositoryManager()->getLocalRepository();
 
         /** @var \Composer\Package\CompletePackage $package */
-        foreach($repository->getPackages() as $package){
+        foreach ($repository->getPackages() as $package) {
             if ($package instanceof BasePackage) {
                 $this->cleanPackage($package);
             }
@@ -114,10 +108,10 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
         $vendorDir = $this->config->get('vendor-dir');
         $targetDir = $package->getTargetDir();
         $packageName = $package->getPrettyName();
-        $packageDir = $targetDir ? $packageName . '/' . $targetDir : $packageName ;
+        $packageDir = $targetDir ? $packageName . '/' . $targetDir : $packageName;
 
         $rules = isset($this->rules[$packageName]) ? $this->rules[$packageName] : null;
-        if(!$rules){
+        if (!$rules) {
             return;
         }
 
@@ -126,17 +120,17 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
             return false;
         }
 
-        foreach((array) $rules as $part) {
+        foreach ((array) $rules as $part) {
             // Split patterns for single globs (should be max 260 chars)
             $patterns = explode(' ', trim($part));
-            
+
             foreach ($patterns as $pattern) {
                 try {
-                    foreach (glob($dir.'/'.$pattern) as $file) {
+                    foreach (glob($dir . '/' . $pattern) as $file) {
                         $this->filesystem->remove($file);
                     }
                 } catch (\Exception $e) {
-                    $this->io->write("Could not parse $packageDir ($pattern): ".$e->getMessage());
+                    $this->io->write("Could not parse $packageDir ($pattern): " . $e->getMessage());
                 }
             }
         }
