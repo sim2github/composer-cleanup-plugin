@@ -7,8 +7,8 @@ class CleanupRules
     public static function getRules()
     {
         // Default patterns for common files
-        $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* CONTRIBUTORS* HISTORY* UPGRADING* SECURITY* UPGRADE* *.md *.markdown *.rst package* demo example examples doc docs readme* changelog* composer*';
-        $tests = '.travis.yml .scrutinizer.yml phpcs.xml* phpcs.php phpunit.xml* phpunit.php phpbench.json* phpstan.neon* psalm.xml.dist test tests Tests travis patchwork.json';
+        $docs = 'README* CHANGELOG* FAQ* CONTRIBUTING* CONTRIBUTORS* HISTORY* UPGRADING* SECURITY* UPGRADE* *.md *.markdown package* demo example examples doc docs readme* changelog* composer* .github .travis .gitignore .gitattributes';
+        $tests = '.travis.yml .scrutinizer.yml phpcs.xml* phpcs.php .php_cs* phpunit.xml* phpunit.php phpbench.json* phpstan.neon* psalm.* test tests Tests travis patchwork.json';
 
         return array(
             'anahkiasen/former'                     => array($docs, $tests),
@@ -45,12 +45,12 @@ class CleanupRules
             'doctrine/reflection' => array($docs, $tests),
             'dompdf/dompdf'                         => array($docs, $tests, 'www'),
             'dragonmantank/cron-expression'      => array($docs, $tests),
-            'easycorp/easyadmin-bundle'     => array($docs, $tests),
+            'easycorp/easyadmin-bundle'     => array($docs, $tests, 'yarn.lock webpack.config.js'),
             'egulias/email-validator' => array($docs, $tests),
             'erusev/parsedown-extra'             => array($docs, $tests),
             'filp/whoops'                           => array($docs, $tests),
             'friendsofphp/php-cs-fixer'          => array($docs, $tests, 'doc dev-tools *.dist'),
-            'fzaninotto/faker'                   => array($docs, $tests, 'Makefile *.dist src/Faker/Provider/ar_JO src/Faker/Provider/ar_SA src/Faker/Provider/at_AT src/Faker/Provider/bg_BG src/Faker/Provider/bn_BD src/Faker/Provider/cs_CZ src/Faker/Provider/da_DK src/Faker/Provider/de_AT src/Faker/Provider/de_CH src/Faker/Provider/de_DE src/Faker/Provider/el_CY src/Faker/Provider/el_GR src/Faker/Provider/en_AU src/Faker/Provider/en_CA src/Faker/Provider/en_HK src/Faker/Provider/en_IN src/Faker/Provider/en_NG src/Faker/Provider/en_NZ src/Faker/Provider/en_PH src/Faker/Provider/en_SG src/Faker/Provider/en_UG src/Faker/Provider/en_ZA src/Faker/Provider/es_AR src/Faker/Provider/es_ES src/Faker/Provider/es_PE src/Faker/Provider/es_VE src/Faker/Provider/fa_IR src/Faker/Provider/fi_FI src/Faker/Provider/fr_BE src/Faker/Provider/fr_CA src/Faker/Provider/fr_CH src/Faker/Provider/fr_FR src/Faker/Provider/he_IL src/Faker/Provider/hr_HR src/Faker/Provider/hu_HU src/Faker/Provider/hy_AM src/Faker/Provider/id_ID src/Faker/Provider/is_IS src/Faker/Provider/it_CH src/Faker/Provider/it_IT src/Faker/Provider/ja_JP src/Faker/Provider/ka_GE src/Faker/Provider/kk_KZ src/Faker/Provider/ko_KR src/Faker/Provider/lt_LT src/Faker/Provider/lv_LV src/Faker/Provider/me_ME src/Faker/Provider/mn_MN src/Faker/Provider/ms_MY src/Faker/Provider/nb_NO src/Faker/Provider/ne_NP src/Faker/Provider/nl_BE src/Faker/Provider/nl_NL src/Faker/Provider/pl_PL src/Faker/Provider/pt_BR src/Faker/Provider/pt_PT src/Faker/Provider/ro_MD src/Faker/Provider/ro_RO src/Faker/Provider/sk_SK src/Faker/Provider/sl_SI src/Faker/Provider/sr_Cyrl_RS src/Faker/Provider/sr_Latn_RS src/Faker/Provider/sr_RS src/Faker/Provider/sv_SE src/Faker/Provider/th_TH src/Faker/Provider/tr_TR src/Faker/Provider/vi_VN src/Faker/Provider/zh_CN src/Faker/Provider/zh_TW'),
+            'fzaninotto/faker'                   => array($docs, $tests, 'Makefile *.dist src/Faker/Provider/{ar_JO,ar_SA,at_AT,bg_BG,bn_BD,cs_CZ,da_DK,de_AT,de_CH,de_DE,el_CY,el_GR,en_AU,en_CA,en_HK,en_IN,en_NG,en_NZ,en_PH,en_SG,en_UG,en_ZA,es_AR,es_ES,es_PE,es_VE,fa_IR,fi_FI,fr_BE,fr_CA,fr_CH,fr_FR,he_IL,hr_HR,hu_HU,hy_AM,id_ID,is_IS,it_CH,it_IT,ja_JP,ka_GE,kk_KZ,ko_KR,lt_LT,lv_LV,me_ME,mn_MN,ms_MY,nb_NO,ne_NP,nl_BE,nl_NL,pl_PL,pt_BR,pt_PT,ro_MD,ro_RO,sk_SK,sl_SI,sr_Cyrl_RS,sr_Latn_RS,sr_RS,sv_SE,th_TH,tr_TR,vi_VN,zh_CN,zh_TW}'),
             'gedmo/doctrine-extensions' => array($docs, $tests),
             'guzzle/guzzle'                         => array($docs, $tests),
             'guzzlehttp/guzzle'                     => array($docs, $tests),
@@ -77,7 +77,7 @@ class CleanupRules
             'leafo/lessphp'                         => array($docs, $tests, 'Makefile package.sh'),
             'league/flysystem'                      => array($docs, $tests),
             'league/stack-robots'                   => array($docs, $tests),
-            'liip/imagine-bundle'       => array($docs, $tests),
+            'liip/imagine-bundle'       => array($docs, $tests, 'Resources/doc'),
             'maximebf/debugbar'                     => array($docs, $tests, 'demo'),
             'mccool/laravel-auto-presenter'         => array($docs, $tests),
             'mockery/mockery'                       => array($docs, $tests),
@@ -89,7 +89,7 @@ class CleanupRules
             'nesbot/carbon'                         => array($docs, $tests),
             'nikic/php-parser'                      => array($docs, $tests, 'test_old'),
             'ocramius/package-versions' => array($docs, $tests),
-            'ocramius/proxy-manager' => array($docs, $tests),
+            'ocramius/proxy-manager' => array($docs, $tests, '.phpstorm.meta.php'),
             'oyejorge/less.php'                     => array($docs, $tests),
             'pagerfanta/pagerfanta' => array($docs, $tests),
             'patchwork/utf8'                        => array($docs, $tests),
@@ -109,7 +109,7 @@ class CleanupRules
             'predis/predis'                         => array($docs, $tests, 'bin'),
             'psr/cache' => array($docs, $tests),
             'psr/container' => array($docs, $tests),
-            'psr/log'                               => array($docs, $tests),
+            'psr/log'                               => array($docs, $tests, 'Test'),
             'psy/psysh'                             => array($docs, $tests),
             'queue-interop/amqp-interop'         => array($docs, $tests),
             'queue-interop/queue-interop'        => array($docs, $tests),
@@ -131,7 +131,7 @@ class CleanupRules
             'spiral/roadrunner'                  => array($docs, $tests, 'cmd osutil service util *.mod *.go *.xml'),
             'stack/builder'                         => array($docs, $tests),
             'stof/doctrine-extensions-bundle'       => array($docs, $tests),
-            'swiftmailer/swiftmailer'               => array($docs, $tests, 'build* notes test-suite create_pear_package.php'),
+            'swiftmailer/swiftmailer'               => array($docs, $tests, 'build* notes test-suite create_pear_package.php CHANGES'),
             'symfony/apache-pack'       => array($docs, $tests),
             'symfony/asset'     => array($docs, $tests),
             'symfony/browser-kit'                   => array($docs, $tests),
@@ -193,7 +193,7 @@ class CleanupRules
             'theseer/tokenizer'                  => array($docs, $tests),
             'tijsverkoyen/css-to-inline-styles'     => array($docs, $tests),
             'twig/extensions'       => array($docs, $tests),
-            'twig/twig'                             => array($docs, $tests),
+            'twig/twig'                             => array($docs, $tests, 'drupal_test.sh'),
             'venturecraft/revisionable'             => array($docs, $tests),
             'vlucas/phpdotenv'                      => array($docs, $tests),
             'webimpress/safe-writer' => array($docs, $tests),
